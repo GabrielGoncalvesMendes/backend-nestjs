@@ -54,6 +54,8 @@ Se você está iniciando em desenvolvimento, você poderá inicia-lo com:
 # Iniciar a aplicação em modo de desenvolvimento
 yarn start:dev ou npm run start:dev
 ```
+Agora podera executar as rotas atraves de http://localhost:3333 ou o numero da PORT na 
+qual adicionou no arquivo .env
 
 ## Teste
 Nesta etapa foram realizados somente alguns testes básicos que podem ser acompanhados
@@ -62,6 +64,29 @@ executando o comando abaixo:
 # Teste unitários
 $ yarn test ou npm run test
 ```
+
+## Rotas
+Ambas as rotas tem de enviar um token JWT conseguido quando logado no serviço de
+login presente no KeyCloak (SSO) e passados como um "Bearer Token".
+Para conseguir a validação é preciso setar a URL do SSO (Keycloak)
+no arquivo .env, baseando no arquivo .env.sample
+A rota liberada neste projeto é a de customer e os métodos com os exemplos de
+corpos de requisição a seguir:
+GET: /customer/idCustomer
+  Retorna um customer baseado no id PATH params;
+POST: /customer
+  cria um customer baseado no corpo da requisição.
+  Corpo da chamada post = {
+    document: number,
+    name: string;
+  }
+PATCH: /customer/idCustomer
+  Atualiza um customer baseado no id PATH params, passando o corpo da requisição.
+  Corpo da chamada post = {
+    id: string;
+    document: number;
+    name: string;
+  }
 
 ## Liçensa
 
